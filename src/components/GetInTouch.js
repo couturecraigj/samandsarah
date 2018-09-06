@@ -10,8 +10,21 @@ export default () => (
     </p>
     <div className="row">
       <div className="8u 12u$(small)">
-        <form method="post" action="#">
+        <form
+          method="post"
+          data-netlify="true"
+          action="/thanks"
+          data-netlify-honeypot="bot-field"
+          name="contact"
+        >
           <div className="row uniform 50%">
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>
+                Don’t fill this out
+                <input name="bot-field" id="bot-field" />
+              </label>
+            </p>
             <div className="6u 12u$(xsmall)">
               <input type="text" name="name" id="name" placeholder="Name" />
             </div>
