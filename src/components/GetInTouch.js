@@ -39,13 +39,11 @@ export default () => (
                 rows="4"
               />
             </div>
+            <div>
+              <input type="submit" value="Send Message" />
+            </div>
           </div>
         </form>
-        <ul className="actions">
-          <li>
-            <input type="submit" value="Send Message" />
-          </li>
-        </ul>
       </div>
       <div className="4u 12u$(small)">
         <ul className="labeled-icons">
