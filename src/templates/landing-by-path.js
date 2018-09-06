@@ -5,7 +5,7 @@ import get from 'lodash/get'
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.wordpressPost
+    const post = this.props.data.wordpressPage
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
@@ -25,14 +25,14 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostByPath($slug: String!) {
+  query LandingByPath($slug: String) {
     site {
       siteMetadata {
         title
         author
       }
     }
-    wordpressPost(slug: { eq: $slug }) {
+    wordpressPage(slug: { eq: $slug }) {
       id
       content
       title
