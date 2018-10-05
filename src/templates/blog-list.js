@@ -64,11 +64,11 @@ const Pagination = ({ index, pageCount, group }) => {
 }
 
 const BlogListTemplate = props => {
-  console.log(props)
   const { data, pathContext } = props
   const { group = [], index = 1, first, last, pageCount = 1 } = pathContext
   const previousUrl = index - 1 == 1 ? '' : (index - 1).toString()
   const nextUrl = (index + 1).toString()
+  console.log(group)
   return (
     <div>
       <Helmet>
@@ -81,6 +81,9 @@ const BlogListTemplate = props => {
           {group.length ? (
             group.map(({ node }) => (
               <section key={node.slug}>
+                {console.log(
+                  get(node, 'featured_media.localFile.childImageSharp.sizes')
+                )}
                 <Link to={`/${node.date}/${node.slug}`} className="image">
                   {has(
                     node,

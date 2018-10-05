@@ -111,7 +111,7 @@ class HomeIndex extends React.Component {
                 )
               })}
               <li>
-                <a href="#" className="button">
+                <a href="/blog" className="button">
                   Read More
                 </a>
               </li>
