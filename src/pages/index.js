@@ -92,7 +92,9 @@ class HomeIndex extends React.Component {
           </section>
 
           <section id="two">
-            <h2>Recent Posts</h2>
+            <header className="major">
+              <h2>Recent Posts</h2>
+            </header>
 
             <ul className="actions">
               {posts.map(post => {

@@ -8,7 +8,7 @@ class Footer extends React.Component {
           <ul className="icons">
             <li>
               <a
-                href="mailto:wullysammoth@gmail.com"
+                href="mailto:sam@keenecrossway.org"
                 className="icon fa-envelope-o"
               >
                 <span className="label">Email</span>

@@ -1528,3 +1528,7 @@ body.is-touch {
 .image.avatar {
     filter: sepia(45%)
 }
+
+.gatsby-image-wrapper img {
+    filter: sepia(30%)
+}
