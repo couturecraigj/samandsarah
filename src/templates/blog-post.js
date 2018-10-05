@@ -59,7 +59,7 @@ export const pageQuery = graphql`
               maxWidth: 1000
               toFormat: PNG
             ) {
-              ...GatsbyImageSharpSizes_tracedSVG
+              ...GatsbyImageSharpSizes_withWebp_tracedSVG
             }
           }
         }

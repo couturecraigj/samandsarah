@@ -142,7 +142,7 @@ export const pageQuery = graphql`
                   maxWidth: 300
                   toFormat: PNG
                 ) {
-                  ...GatsbyImageSharpSizes_tracedSVG
+                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }
             }
@@ -173,7 +173,7 @@ export const pageQuery = graphql`
                   maxWidth: 1000
                   toFormat: PNG
                 ) {
-                  ...GatsbyImageSharpSizes_tracedSVG
+                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }
             }

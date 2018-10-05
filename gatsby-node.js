@@ -4,12 +4,27 @@ const path = require('path')
 const createPaginatedPages = require('gatsby-paginate')
 const fs = require(`fs-extra`)
 
+const fragments = {
+  gatsbyImageSharpSizesPreferWebpTracedSVG: `
+  fragment GatsbyImageSharpSizes_withWebp_tracedSVG on ImageSharpSizes {
+    tracedSVG
+    aspectRatio
+    src
+    srcSet
+    srcWebp
+    srcSetWebp
+    sizes
+  }
+`,
+}
+
 const devMode = process.env.NODE_ENV !== 'production'
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
   // pexels-photo-132340
   query = `
+  
       {
         defaultSharp: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
           sizes(
@@ -22,13 +37,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             maxWidth: 300
             toFormat: PNG
           ) {
-            tracedSVG
-            aspectRatio
-            src
-            srcSet
-            srcWebp
-            srcSetWebp
-            sizes
+            ...GatsbyImageSharpSizes_withWebp_tracedSVG
           }
         }
         allWordpressPage ${
@@ -58,13 +67,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                       maxWidth: 300
                       toFormat: PNG
                     ) {
-                      tracedSVG
-                      aspectRatio
-                      src
-                      srcSet
-                      srcWebp
-                      srcSetWebp
-                      sizes
+                      ...GatsbyImageSharpSizes_withWebp_tracedSVG
                     }
                   }
                 }
@@ -106,13 +109,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                       maxWidth: 300
                       toFormat: PNG
                     ) {
-                      tracedSVG
-                      aspectRatio
-                      src
-                      srcSet
-                      srcWebp
-                      srcSetWebp
-                      sizes
+                      ...GatsbyImageSharpSizes_withWebp_tracedSVG
                     }
                   }
                 }
@@ -121,6 +118,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
         }
       }
+      ${fragments.gatsbyImageSharpSizesPreferWebpTracedSVG}
     `
 
   return new Promise((resolve, reject) => {
