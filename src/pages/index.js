@@ -105,7 +105,7 @@ class HomeIndex extends React.Component {
                         }
                       />
                       <h4 dangerouslySetInnerHTML={{ __html: post.title }} />
-                      <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                      <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                     </Link>
                   </li>
                 )

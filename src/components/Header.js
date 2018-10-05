@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Footer from './Footer'
-import avatar from '../assets/images/avatar.jpg'
+import avatar from '../assets/images/Avatar-image.jpg'
 
 class Header extends React.Component {
   render() {
