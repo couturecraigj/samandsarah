@@ -50,8 +50,8 @@ export const pageQuery = graphql`
           childImageSharp {
             sizes(
               traceSVG: {
-                color: "#F7E8D7"
-                background: "#6A635C"
+                color: "#edcaa0"
+                background: "#a87f5c"
                 turnPolicy: TURNPOLICY_MINORITY
                 blackOnWhite: false
               }

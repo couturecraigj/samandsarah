@@ -79,7 +79,7 @@ module.exports = {
         // Search and Replace Urls across WordPress content.
         searchAndReplaceContentUrls: {
           sourceUrl: wordPressOriginLong,
-          replacementUrl: devMode ? 'http://localhost:8000/' : siteUrl + '/',
+          replacementUrl: devMode ? 'http://localhost:8000' : siteUrl,
         },
         // Set how many simultaneous requests are sent at once.
         concurrentRequests: 10,

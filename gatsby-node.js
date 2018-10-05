@@ -4,18 +4,29 @@ const path = require('path')
 const createPaginatedPages = require('gatsby-paginate')
 const fs = require(`fs-extra`)
 
+const gql = (strings, ...values) => {
+  let str = ''
+  console.log(values, strings)
+  if (values.length > 0)
+    values.forEach((value, i) => {
+      str = str + strings[i] + value
+    })
+  else str = strings[0]
+  console.log(str)
+  return str
+}
 const fragments = {
-  gatsbyImageSharpSizesPreferWebpTracedSVG: `
-  fragment GatsbyImageSharpSizes_withWebp_tracedSVG on ImageSharpSizes {
-    tracedSVG
-    aspectRatio
-    src
-    srcSet
-    srcWebp
-    srcSetWebp
-    sizes
-  }
-`,
+  gatsbyImageSharpSizesPreferWebpTracedSVG: gql`
+    fragment GatsbyImageSharpSizes_withWebp_tracedSVG on ImageSharpSizes {
+      tracedSVG
+      aspectRatio
+      src
+      srcSet
+      srcWebp
+      srcSetWebp
+      sizes
+    }
+  `,
 }
 
 const devMode = process.env.NODE_ENV !== 'production'
@@ -23,13 +34,14 @@ const devMode = process.env.NODE_ENV !== 'production'
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
   // pexels-photo-132340
-  query = `
+  query = gql`
   
       {
         defaultSharp: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
           sizes(
             traceSVG: {
-              color: "#F7E8D7"
+              color: "#edcaa0"
+              background: "#a87f5c"
               turnPolicy: TURNPOLICY_MINORITY
               blackOnWhite: false
             }
@@ -58,8 +70,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   childImageSharp {
                     sizes(
                       traceSVG: {
-                        color: "#F7E8D7"
-                        background: "#6A635C"
+                        color: "#edcaa0"
+                        background: "#a87f5c"
                         turnPolicy: TURNPOLICY_MINORITY
                         blackOnWhite: false
                       }
@@ -100,8 +112,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   childImageSharp {
                     sizes(
                       traceSVG: {
-                        color: "#F7E8D7"
-                        background: "#6A635C"
+                        color: "#edcaa0"
+                        background: "#a87f5c"
                         turnPolicy: TURNPOLICY_MINORITY
                         blackOnWhite: false
                       }
