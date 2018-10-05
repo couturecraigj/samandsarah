@@ -99,21 +99,21 @@ class HomeIndex extends React.Component {
                 return (
                   <li>
                     <Link to={post.path + post.slug}>
+                      <h3 dangerouslySetInnerHTML={{ __html: post.title }} />
                       <Img
                         sizes={
                           post.featured_media.localFile.childImageSharp.sizes
                         }
                       />
-                      <h4 dangerouslySetInnerHTML={{ __html: post.title }} />
                       <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                     </Link>
                   </li>
                 )
               })}
               <li>
-                <a href="/blog" className="button">
+                <Link to="/blog" className="button">
                   Read More
-                </a>
+                </Link>
               </li>
             </ul>
           </section>
@@ -145,7 +145,17 @@ export const pageQuery = graphql`
           featured_media {
             localFile {
               childImageSharp {
-                sizes {
+                sizes(
+                  traceSVG: {
+                    color: "#8d82c4"
+                    background: "#252a43"
+                    turnPolicy: TURNPOLICY_MINORITY
+                    blackOnWhite: false
+                  }
+                  cropFocus: ATTENTION
+                  maxWidth: 1000
+                  toFormat: PNG
+                ) {
                   ...GatsbyImageSharpSizes_tracedSVG
                 }
               }

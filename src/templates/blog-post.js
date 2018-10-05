@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
+import Img from 'gatsby-image'
 import get from 'lodash/get'
 
 class BlogPostTemplate extends React.Component {
@@ -14,6 +15,10 @@ class BlogPostTemplate extends React.Component {
           <Helmet title={`${post.title} | ${siteTitle}`} />
           <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
           <p>{post.date}</p>
+          <Img
+            sizes={get(post, 'featured_media.localFile.childImageSharp.sizes')}
+          />
+          <br />
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
           <hr />
         </div>
@@ -37,6 +42,25 @@ export const pageQuery = graphql`
       content
       title
       date(formatString: "MMMM DD, YYYY")
+      featured_media {
+        localFile {
+          childImageSharp {
+            sizes(
+              traceSVG: {
+                color: "#8d82c4"
+                background: "#252a43"
+                turnPolicy: TURNPOLICY_MINORITY
+                blackOnWhite: false
+              }
+              cropFocus: ATTENTION
+              maxWidth: 1000
+              toFormat: PNG
+            ) {
+              ...GatsbyImageSharpSizes_tracedSVG
+            }
+          }
+        }
+      }
     }
   }
 `
