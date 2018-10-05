@@ -51,9 +51,9 @@ export default () => (
             <h3 className="icon fa-home">
               <span className="label">Address</span>
             </h3>
-            1234 Somewhere Rd.
+            56 Howard Street
             <br />
-            Nashville, TN 00000
+            Keene, NH 03431
             <br />
             United States
           </li>
@@ -61,13 +61,13 @@ export default () => (
             <h3 className="icon fa-mobile">
               <span className="label">Phone</span>
             </h3>
-            000-000-0000
+            (603) 903-7205
           </li>
           <li>
             <h3 className="icon fa-envelope-o">
               <span className="label">Email</span>
             </h3>
-            <a href="mailto:wullysammoth@gmail.com">wullysammoth@gmail.com</a>
+            <a href="mailto:sam@keenecrossway.org">sam@keenecrossway.org</a>
           </li>
         </ul>
       </div>

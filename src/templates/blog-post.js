@@ -12,7 +12,7 @@ class BlogPostTemplate extends React.Component {
       <div>
         <div id="main">
           <Helmet title={`${post.title} | ${siteTitle}`} />
-          <h1>{post.title}</h1>
+          <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
           <p>{post.date}</p>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
           <hr />

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Img from 'gatsby-image'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
@@ -54,6 +55,7 @@ class HomeIndex extends React.Component {
 
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
+    const posts = this.props.data.allWordpressPost.edges.map(({ node }) => node)
     const siteDescription = this.props.data.site.siteMetadata.description
 
     return (
@@ -93,6 +95,21 @@ class HomeIndex extends React.Component {
             <h2>Recent Posts</h2>
 
             <ul className="actions">
+              {posts.map(post => {
+                return (
+                  <li>
+                    <Link to={post.path + post.slug}>
+                      <Img
+                        sizes={
+                          post.featured_media.localFile.childImageSharp.sizes
+                        }
+                      />
+                      <h4 dangerouslySetInnerHTML={{ __html: post.title }} />
+                      <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                    </Link>
+                  </li>
+                )
+              })}
               <li>
                 <a href="#" className="button">
                   Read More
@@ -115,6 +132,26 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
+      }
+    }
+    allWordpressPost {
+      edges {
+        node {
+          content
+          path: date(formatString: "/YYYY/MM/DD/")
+          slug
+          title
+          excerpt
+          featured_media {
+            localFile {
+              childImageSharp {
+                sizes {
+                  ...GatsbyImageSharpSizes_tracedSVG
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

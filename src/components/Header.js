@@ -14,6 +14,12 @@ class Header extends React.Component {
           <h1>
             <strong>Wullbrandt Croatia Ministry</strong>
           </h1>
+          <p>
+            <strong>
+              Training leaders, Planting & Strengthening <br /> Churches in
+              Croatia
+            </strong>
+          </p>
           <Link to="/about">About</Link>
         </div>
         <Footer />
