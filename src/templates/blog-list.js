@@ -3,6 +3,7 @@ import { get, has } from 'lodash'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
+import BlogList from '../components/BlogList'
 
 const Pagination = ({ index, pageCount, group }) => {
   if (index === 1 && index === pageCount) return null
@@ -68,7 +69,9 @@ const BlogListTemplate = props => {
   const { group = [], index = 1, first, last, pageCount = 1 } = pathContext
   const previousUrl = index - 1 == 1 ? '' : (index - 1).toString()
   const nextUrl = (index + 1).toString()
-  console.log(group)
+  const closingComponent = () => (
+    <Pagination index={index} pageCount={pageCount} group={group} />
+  )
   return (
     <div>
       <Helmet>
@@ -77,61 +80,9 @@ const BlogListTemplate = props => {
       </Helmet>
 
       <div id="main">
+        <h1>Blog</h1>
         <section id="two" className="spotlights">
-          {group.length ? (
-            group.map(({ node }) => (
-              <section key={node.slug}>
-                {console.log(
-                  get(node, 'featured_media.localFile.childImageSharp.sizes')
-                )}
-                <Link to={`/${node.date}/${node.slug}`} className="image">
-                  {has(
-                    node,
-                    'featured_media.localFile.childImageSharp.sizes'
-                  ) ? (
-                    <Img
-                      sizes={get(
-                        node,
-                        'featured_media.localFile.childImageSharp.sizes'
-                      )}
-                      alt=""
-                    />
-                  ) : null}
-                </Link>
-                <div className="content">
-                  <div className="inner">
-                    <header className="major">
-                      <h3 dangerouslySetInnerHTML={{ __html: node.title }} />
-                    </header>
-                    <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-                    <ul className="actions">
-                      <li>
-                        <Link
-                          to={`/${node.date}/${node.slug}`}
-                          className="button"
-                        >
-                          READ ON
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-            ))
-          ) : (
-            <section>
-              <div className="content">
-                <div className="inner">
-                  <header className="major">
-                    <h1>I have not posted anything just yet</h1>
-                  </header>
-                  <p>This will be updated soon</p>
-                </div>
-              </div>
-            </section>
-          )}
-
-          <Pagination index={index} pageCount={pageCount} group={group} />
+          <BlogList edges={group} closingComponent={closingComponent} />
         </section>
       </div>
     </div>

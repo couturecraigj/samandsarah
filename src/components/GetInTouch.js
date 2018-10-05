@@ -4,9 +4,10 @@ export default () => (
   <section id="three">
     <h2>Get In Touch</h2>
     <p>
-      Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna.
-      Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem
-      neque lorem ipsum dolor.
+      Want to learn more? Please feel free to reach out to us in any of the
+      following ways. We look forward to hearing from you and we hope to both be
+      and receive edifying. <br />
+      <strong>God bless</strong>
     </p>
     <div className="row">
       <div className="8u 12u$(small)">

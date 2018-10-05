@@ -20,7 +20,6 @@ class Header extends React.Component {
               Croatia
             </strong>
           </p>
-          <Link to="/about">About</Link>
         </div>
         <Footer />
       </header>

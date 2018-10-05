@@ -1532,3 +1532,78 @@ body.is-touch {
 .gatsby-image-wrapper img {
     filter: sepia(30%)
 }
+
+.content a.image.img-left {
+    float: left;
+    width: 200px;
+    margin: 0 20px 0 0;
+}
+
+.blog-post-content {
+    & p {
+        margin: 0 0 1em 0;
+    }
+
+    & li {
+        margin: 0 0 .8em 0;
+    }
+
+    & img.alignleft {
+        margin: 0 .5em;
+        float: left;
+    }
+
+    & p {
+        width: 100%;
+
+    }
+
+    & pre {
+        padding: 8px;
+        overflow-x: auto;
+    }
+}
+
+.blog-list {
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
+
+    & li {
+        display: inline-block;
+        padding: 0 1em 0 0;
+        vertical-align: middle;
+
+
+        @media screen and (min-width: 800px) {
+            margin: 0 0 0 1em;
+
+            & a.post {
+                display: grid;
+                grid-template-rows: 1fr minmax(4fr, 30px);
+                grid-template-columns: 1fr 3fr;
+                grid-gap: 10px 15px;
+                border-bottom: none;
+
+                & .gatsby-image-outer-wrapper {
+                    // align-self: center;
+                    // justify-self: center;
+                    margin-top: .5em;
+                }
+
+                p {
+                    margin-bottom: 1em;
+                }
+
+                h2,
+                h3 {
+                    grid-column: 1 / span 2;
+
+                    margin-bottom: .6em;
+                }
+
+            }
+
+        }
+    }
+}

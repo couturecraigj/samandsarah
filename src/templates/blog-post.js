@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
-
+import GetInTouch from '../components/GetInTouch'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.wordpressPost
@@ -19,8 +19,11 @@ class BlogPostTemplate extends React.Component {
             sizes={get(post, 'featured_media.localFile.childImageSharp.sizes')}
           />
           <br />
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          <hr />
+          <div
+            className="blog-post-content"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+          <GetInTouch />
         </div>
       </div>
     )
@@ -47,8 +50,8 @@ export const pageQuery = graphql`
           childImageSharp {
             sizes(
               traceSVG: {
-                color: "#8d82c4"
-                background: "#252a43"
+                color: "#F7E8D7"
+                background: "#6A635C"
                 turnPolicy: TURNPOLICY_MINORITY
                 blackOnWhite: false
               }

@@ -14,12 +14,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         defaultSharp: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
           sizes(
             traceSVG: {
-              color: "#8d82c4"
+              color: "#F7E8D7"
               turnPolicy: TURNPOLICY_MINORITY
               blackOnWhite: false
             }
             cropFocus: ATTENTION
-            maxWidth: 1000
+            maxWidth: 300
             toFormat: PNG
           ) {
             tracedSVG
@@ -36,22 +36,26 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         } {
           edges {
             node {
+              path: date(formatString: "/YYYY/MM/DD/")
               slug
               title
               excerpt
               content
+              author {
+                name
+              }
               featured_media {
                 localFile {
                   childImageSharp {
                     sizes(
                       traceSVG: {
-                        color: "#8d82c4"
-                        background: "#252a43"
+                        color: "#F7E8D7"
+                        background: "#6A635C"
                         turnPolicy: TURNPOLICY_MINORITY
                         blackOnWhite: false
                       }
                       cropFocus: ATTENTION
-                      maxWidth: 1000
+                      maxWidth: 300
                       toFormat: PNG
                     ) {
                       tracedSVG
@@ -80,22 +84,26 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           edges {
             node {
               date(formatString: "YYYY/MM/DD")
+              path: date(formatString: "/YYYY/MM/DD/")
               slug
               title
               excerpt
+              author {
+                name
+              }
               content
               featured_media {
                 localFile {
                   childImageSharp {
                     sizes(
                       traceSVG: {
-                        color: "#8d82c4"
-                        background: "#252a43"
+                        color: "#F7E8D7"
+                        background: "#6A635C"
                         turnPolicy: TURNPOLICY_MINORITY
                         blackOnWhite: false
                       }
                       cropFocus: ATTENTION
-                      maxWidth: 1000
+                      maxWidth: 300
                       toFormat: PNG
                     ) {
                       tracedSVG

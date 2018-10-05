@@ -3,6 +3,7 @@ import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+import BlogList from '../components/BlogList'
 
 // import Lightbox from 'react-images'
 // import Gallery from '../components/Gallery'
@@ -55,69 +56,52 @@ class HomeIndex extends React.Component {
 
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
-    const posts = this.props.data.allWordpressPost.edges.map(({ node }) => node)
+    const {
+      edges: postEdges,
+      totalCount: postCount,
+    } = this.props.data.allWordpressPost
+
+    const { edges: pageEdges } = this.props.data.allWordpressPage
     const siteDescription = this.props.data.site.siteMetadata.description
 
     return (
       <div>
         <Helmet>
-          <title>{siteTitle}</title>
-          <meta name="description" content={siteDescription} />
+          <title>Home</title>
         </Helmet>
 
         <div id="main">
-          <section id="one">
-            <header className="major">
-              <h2>
-                Ipsum lorem dolor aliquam ante commodo
-                <br />
-                magna sed accumsan arcu neque.
-              </h2>
-            </header>
-            <p>
-              Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc
-              nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae
-              lobortis tortor primis integer massa adipiscing id nisi accumsan
-              pellentesque commodo blandit enim arcu non at amet id arcu magna.
-              Accumsan orci faucibus id eu lorem semper nunc nisi lorem
-              vulputate lorem neque cubilia.
-            </p>
-            <ul className="actions">
-              <li>
-                <a href="#" className="button">
-                  Learn More
-                </a>
-              </li>
-            </ul>
-          </section>
-
+          {pageEdges.map(({ node }) => {
+            return (
+              <section id="one">
+                <header className="major">
+                  <h2 dangerouslySetInnerHTML={{ __html: node.title }} />
+                </header>
+                <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                <ul className="actions">
+                  <li>
+                    <Link to={node.slug} className="button">
+                      Learn More
+                    </Link>
+                  </li>
+                </ul>
+              </section>
+            )
+          })}
           <section id="two">
             <header className="major">
               <h2>Recent Posts</h2>
             </header>
-
-            <ul className="actions">
-              {posts.map(post => {
-                return (
-                  <li>
-                    <Link to={post.path + post.slug}>
-                      <h3 dangerouslySetInnerHTML={{ __html: post.title }} />
-                      <Img
-                        sizes={
-                          post.featured_media.localFile.childImageSharp.sizes
-                        }
-                      />
-                      <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-                    </Link>
-                  </li>
-                )
-              })}
-              <li>
-                <Link to="/blog" className="button">
-                  Read More
-                </Link>
-              </li>
-            </ul>
+            <BlogList
+              edges={postEdges}
+              closingComponent={() =>
+                postCount > 3 ? (
+                  <Link to="/blog" className="button">
+                    Read More
+                  </Link>
+                ) : null
+              }
+            />
           </section>
           <GetInTouch />
         </div>
@@ -136,7 +120,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    allWordpressPost {
+    allWordpressPage {
       edges {
         node {
           content
@@ -149,8 +133,39 @@ export const pageQuery = graphql`
               childImageSharp {
                 sizes(
                   traceSVG: {
-                    color: "#8d82c4"
-                    background: "#252a43"
+                    color: "#F7E8D7"
+                    background: "#6A635C"
+                    turnPolicy: TURNPOLICY_MINORITY
+                    blackOnWhite: false
+                  }
+                  cropFocus: ATTENTION
+                  maxWidth: 300
+                  toFormat: PNG
+                ) {
+                  ...GatsbyImageSharpSizes_tracedSVG
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allWordpressPost(limit: 3) {
+      totalCount
+      edges {
+        node {
+          content
+          path: date(formatString: "/YYYY/MM/DD/")
+          slug
+          title
+          excerpt
+          featured_media {
+            localFile {
+              childImageSharp {
+                sizes(
+                  traceSVG: {
+                    color: "#F7E8D7"
+                    background: "#6A635C"
                     turnPolicy: TURNPOLICY_MINORITY
                     blackOnWhite: false
                   }

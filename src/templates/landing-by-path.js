@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
 import has from 'lodash/has'
-
+import GetInTouch from '../components/GetInTouch'
 class BlogPostTemplate extends React.Component {
   render() {
     const { props } = this
@@ -14,6 +14,8 @@ class BlogPostTemplate extends React.Component {
     return (
       <div>
         <div id="main">
+          <h1>{post.title}</h1>
+          <p>{post.date}</p>
           {has(props, 'data.wordpressPage.featured_media.localFile') && (
             <Img
               sizes={get(
@@ -23,10 +25,9 @@ class BlogPostTemplate extends React.Component {
             />
           )}
           <Helmet title={`${post.title} | ${siteTitle}`} />
-          <h1>{post.title}</h1>
-          <p>{post.date}</p>
+
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          <hr />
+          <GetInTouch />
         </div>
       </div>
     )
@@ -56,7 +57,7 @@ export const pageQuery = graphql`
               maxWidth: 1500
               quality: 100
               traceSVG: {
-                color: "#8d82c4"
+                color: "#F7E8D7"
                 background: "#333856"
                 turnPolicy: TURNPOLICY_MINORITY
                 blackOnWhite: false
