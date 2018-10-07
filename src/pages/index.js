@@ -80,7 +80,10 @@ class HomeIndex extends React.Component {
                 <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
                 <ul className="actions">
                   <li>
-                    <Link to={node.slug} className="button">
+                    <Link
+                      to={node.slug + '#wordpress-page-title'}
+                      className="button"
+                    >
                       Learn More
                     </Link>
                   </li>

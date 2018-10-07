@@ -14,7 +14,10 @@ class BlogPostTemplate extends React.Component {
     return (
       <div>
         <div id="main">
-          <h1>{post.title}</h1>
+          <h1
+            id="wordpress-page-title"
+            dangerouslySetInnerHTML={{ __html: post.title }}
+          />
           <p>{post.date}</p>
           {has(props, 'data.wordpressPage.featured_media.localFile') && (
             <Img
