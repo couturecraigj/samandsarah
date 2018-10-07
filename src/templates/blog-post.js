@@ -4,6 +4,7 @@ import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
 import GetInTouch from '../components/GetInTouch'
+import { sanitizeText } from '../utils/wordpress-tools'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.wordpressPost
@@ -12,7 +13,16 @@ class BlogPostTemplate extends React.Component {
     return (
       <div>
         <div id="main">
-          <Helmet title={`${post.title} | ${siteTitle}`} />
+          <Helmet
+            title={sanitizeText(post.title)}
+            meta={[
+              { property: 'og:title', content: sanitizeText(post.title) },
+              {
+                property: 'og:image',
+                content: get(post, 'featured_media.localFile.publicURL'),
+              },
+            ]}
+          />
           <h1
             id="wordpress-head"
             dangerouslySetInnerHTML={{ __html: post.title }}
@@ -49,7 +59,9 @@ export const pageQuery = graphql`
       title
       date(formatString: "MMMM DD, YYYY")
       featured_media {
+        link
         localFile {
+          publicURL
           childImageSharp {
             sizes(
               traceSVG: {

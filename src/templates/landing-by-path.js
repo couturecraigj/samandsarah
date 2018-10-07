@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 import get from 'lodash/get'
 import has from 'lodash/has'
 import GetInTouch from '../components/GetInTouch'
+import { sanitizeText } from '../utils/wordpress-tools'
 class BlogPostTemplate extends React.Component {
   render() {
     const { props } = this
@@ -27,8 +28,16 @@ class BlogPostTemplate extends React.Component {
               )}
             />
           )}
-          <Helmet title={`${post.title} | ${siteTitle}`} />
-
+          <Helmet
+            title={sanitizeText(post.title)}
+            meta={[
+              { property: 'og:title', content: sanitizeText(post.title) },
+              {
+                property: 'og:image',
+                content: get(post, 'featured_media.localFile.publicURL'),
+              },
+            ]}
+          />
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
           <GetInTouch />
         </div>
@@ -54,6 +63,7 @@ export const pageQuery = graphql`
       date(formatString: "MMMM DD, YYYY")
       featured_media {
         localFile {
+          publicURL
           childImageSharp {
             sizes(
               cropFocus: ENTROPY
