@@ -6,13 +6,11 @@ const fs = require(`fs-extra`)
 
 const gql = (strings, ...values) => {
   let str = ''
-  console.log(values, strings)
   if (values.length > 0)
     values.forEach((value, i) => {
       str = str + strings[i] + value
     })
   else str = strings[0]
-  console.log(str)
   return str
 }
 const fragments = {
@@ -150,7 +148,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         _.each(
           _.get(result, 'data.allWordpressPage.edges', []),
           (edge, index) => {
-            console.log(edge.node.slug)
             createPage({
               path: edge.node.slug.startsWith('wants-to')
                 ? `/${edge.node.slug}`.replace(/-/g, '/')
@@ -171,7 +168,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             component: blogPageList,
           })
         } else {
-          // console.log(_.get(result, 'data.defaultSharp'))
           createPaginatedPages({
             edges: _.get(result, 'data.allWordpressPost.edges', []).map(
               edge =>
@@ -220,7 +216,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         _.each(
           _.get(result, 'data.allWordpressPost.edges', []),
           (edge, index) => {
-            // console.log(edge)
             createPage({
               path: `/${edge.node.date}/${edge.node.slug}`,
               mainImg: _.get(edge, 'node.featured_media.localFile'),

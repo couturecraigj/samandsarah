@@ -8,13 +8,19 @@ const BlogList = ({ edges, closingComponent: ClosingComponent }) => {
       {edges.length ? (
         edges.map(({ node }) => {
           return (
-            <li>
-              <Link to={node.path + node.slug} className="post">
+            <li key={node.slug}>
+              <Link
+                to={node.path + node.slug + '#wordpress-head'}
+                className="post"
+              >
                 <h2 dangerouslySetInnerHTML={{ __html: node.title }} />
                 <Img
                   sizes={node.featured_media.localFile.childImageSharp.sizes}
                 />
-                <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                <div
+                  className="wordpress-content"
+                  dangerouslySetInnerHTML={{ __html: node.excerpt }}
+                />
               </Link>
             </li>
           )

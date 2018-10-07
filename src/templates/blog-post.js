@@ -13,7 +13,10 @@ class BlogPostTemplate extends React.Component {
       <div>
         <div id="main">
           <Helmet title={`${post.title} | ${siteTitle}`} />
-          <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
+          <h1
+            id="wordpress-head"
+            dangerouslySetInnerHTML={{ __html: post.title }}
+          />
           <p>{post.date}</p>
           <Img
             sizes={get(post, 'featured_media.localFile.childImageSharp.sizes')}

@@ -73,7 +73,7 @@ class HomeIndex extends React.Component {
         <div id="main">
           {pageEdges.map(({ node }) => {
             return (
-              <section id="one">
+              <section id="one" key={node.slug}>
                 <header className="major">
                   <h2 dangerouslySetInnerHTML={{ __html: node.title }} />
                 </header>
