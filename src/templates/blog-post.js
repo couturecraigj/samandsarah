@@ -16,7 +16,10 @@ class BlogPostTemplate extends React.Component {
           <Helmet
             title={sanitizeText(post.title)}
             meta={[
-              { property: 'og:title', content: sanitizeText(post.title) },
+              {
+                property: 'og:title',
+                content: `${sanitizeText(post.title)} - ${siteTitle}`,
+              },
               {
                 property: 'og:image',
                 content: get(post, 'featured_media.localFile.publicURL'),
