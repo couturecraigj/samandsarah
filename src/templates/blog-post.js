@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 import get from 'lodash/get'
 import GetInTouch from '../components/GetInTouch'
 import { sanitizeText } from '../utils/wordpress-tools'
+import { openGraphMeta } from '../utils/opengraph-tools'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.wordpressPost
@@ -16,14 +17,14 @@ class BlogPostTemplate extends React.Component {
           <Helmet
             title={sanitizeText(post.title)}
             meta={[
-              {
-                property: 'og:title',
-                content: `${sanitizeText(post.title)} - ${siteTitle}`,
-              },
-              {
-                property: 'og:image',
-                content: get(post, 'featured_media.localFile.publicURL'),
-              },
+              openGraphMeta(
+                'title',
+                `${sanitizeText(post.title)} - ${siteTitle}`
+              ),
+              openGraphMeta(
+                'image',
+                get(post, 'featured_media.localFile.publicURL')
+              ),
             ]}
           />
           <h1
