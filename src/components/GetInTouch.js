@@ -5,9 +5,7 @@ export default () => (
     <h2>Get In Touch</h2>
     <p>
       Want to learn more? Please feel free to reach out to us in any of the
-      following ways. We look forward to hearing from you and we hope to both be
-      and receive edifying. <br />
-      <strong>God bless</strong>
+      following ways.
     </p>
     <div className="row">
       <div className="8u 12u$(small)">

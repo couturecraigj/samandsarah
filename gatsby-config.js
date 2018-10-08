@@ -104,24 +104,65 @@ module.exports = {
         name,
         short_name,
         start_url: '/',
-        background_color: '#242943',
-        theme_color: '#9bf1ff',
+        background_color: '#fff',
+        theme_color: '#55273a',
         display: 'minimal-ui',
+        // icon: 'static/Flag-map-on-Croatia-01.png',
         icons: [
           {
-            // Everything in /static will be copied to an equivalent
-            // directory in /public during development and build, so
-            // assuming your favicons are in /static/favicons,
-            // you can reference them here
-            src: `/android-chrome-192x192.png`,
-            sizes: `192x192`,
+            //     // Everything in /static will be copied to an equivalent
+            //     // directory in /public during development and build, so
+            //     // assuming your favicons are in /static/favicons,
+            //     // you can reference them here
+            src: `/android-chrome-36x36.png`,
+            sizes: `36x36`,
             type: `image/png`,
           },
-          {
-            src: `/android-chrome-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`,
-          },
+          //   {
+          //     src: `/android-chrome-48x48.png`,
+          //     sizes: `48x48`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-72x72.png`,
+          //     sizes: `72x72`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-96x96.png`,
+          //     sizes: `96x96`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-144x144.png`,
+          //     sizes: `144x144`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-192x192.png`,
+          //     sizes: `192x192`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-192x192.png`,
+          //     sizes: `192x192`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-512x512.png`,
+          //     sizes: `512x512`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-192x192.png`,
+          //     sizes: `192x192`,
+          //     type: `image/png`,
+          //   },
+          //   {
+          //     src: `/android-chrome-512x512.png`,
+          //     sizes: `512x512`,
+          //     type: `image/png`,
+          //   },
         ],
       },
     },
