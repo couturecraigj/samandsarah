@@ -12,6 +12,7 @@ class Template extends React.Component {
 
     return (
       <div>
+        <div id="fb-root" />
         <Helmet titleTemplate={`%s - ${data.site.siteMetadata.title}`}>
           <meta
             name="description"

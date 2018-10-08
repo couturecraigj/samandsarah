@@ -7,6 +7,7 @@ import has from 'lodash/has'
 import GetInTouch from '../components/GetInTouch'
 import { sanitizeText } from '../utils/wordpress-tools'
 import { openGraphMeta } from '../utils/opengraph-tools'
+import Comments from '../components/Comments'
 class BlogPostTemplate extends React.Component {
   render() {
     const { props } = this
@@ -43,6 +44,7 @@ class BlogPostTemplate extends React.Component {
             ]}
           />
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <Comments />
           <GetInTouch />
         </div>
       </div>

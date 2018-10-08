@@ -50,9 +50,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             ...GatsbyImageSharpSizes_withWebp_tracedSVG
           }
         }
-        allWordpressPage ${
-          devMode ? '' : `(filter: { status: { eq: "publish" } })`
-        } {
+        allWordpressPage(sort: { fields: [menu_order,title], order: ASC }){
           edges {
             node {
               path: date(formatString: "/YYYY/MM/DD/")

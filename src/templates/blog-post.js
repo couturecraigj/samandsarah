@@ -6,9 +6,11 @@ import get from 'lodash/get'
 import GetInTouch from '../components/GetInTouch'
 import { sanitizeText } from '../utils/wordpress-tools'
 import { openGraphMeta } from '../utils/opengraph-tools'
+import Comments from '../components/Comments'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.wordpressPost
+    const commentStatus = post.comment_status
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
@@ -40,6 +42,8 @@ class BlogPostTemplate extends React.Component {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+          {commentStatus === 'open' && <Comments />}
+
           <GetInTouch />
         </div>
       </div>
@@ -62,6 +66,7 @@ export const pageQuery = graphql`
       content
       title
       date(formatString: "MMMM DD, YYYY")
+      comment_status
       featured_media {
         link
         localFile {
