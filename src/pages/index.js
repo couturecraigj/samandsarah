@@ -123,7 +123,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    allWordpressPage {
+    allWordpressPage(sort: { fields: [menu_order] }) {
       edges {
         node {
           content
