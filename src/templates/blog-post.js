@@ -7,6 +7,7 @@ import GetInTouch from '../components/GetInTouch'
 import { sanitizeText } from '../utils/wordpress-tools'
 import { openGraphMeta } from '../utils/opengraph-tools'
 import Comments from '../components/Comments'
+import LikeButton from '../components/LikeButton'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.wordpressPost
@@ -42,8 +43,8 @@ class BlogPostTemplate extends React.Component {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+          <LikeButton />
           {commentStatus === 'open' && <Comments />}
-
           <GetInTouch />
         </div>
       </div>

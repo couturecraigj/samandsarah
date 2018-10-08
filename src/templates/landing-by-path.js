@@ -8,10 +8,11 @@ import GetInTouch from '../components/GetInTouch'
 import { sanitizeText } from '../utils/wordpress-tools'
 import { openGraphMeta } from '../utils/opengraph-tools'
 import Comments from '../components/Comments'
+import LikeButton from '../components/LikeButton'
 class BlogPostTemplate extends React.Component {
   render() {
     const { props } = this
-    const post = props.data.wordpressPage
+    const page = props.data.wordpressPage
     const siteTitle = get(props, 'data.site.siteMetadata.title')
 
     return (
@@ -19,9 +20,9 @@ class BlogPostTemplate extends React.Component {
         <div id="main">
           <h1
             id="wordpress-page-title"
-            dangerouslySetInnerHTML={{ __html: post.title }}
+            dangerouslySetInnerHTML={{ __html: page.title }}
           />
-          <p>{post.date}</p>
+          <p>{page.date}</p>
           {has(props, 'data.wordpressPage.featured_media.localFile') && (
             <Img
               sizes={get(
@@ -31,20 +32,21 @@ class BlogPostTemplate extends React.Component {
             />
           )}
           <Helmet
-            title={sanitizeText(post.title)}
+            title={sanitizeText(page.title)}
             meta={[
               openGraphMeta(
                 'title',
-                `${sanitizeText(post.title)} - ${siteTitle}`
+                `${sanitizeText(page.title)} - ${siteTitle}`
               ),
               openGraphMeta(
                 'image',
-                get(post, 'featured_media.localFile.publicURL')
+                get(page, 'featured_media.localFile.publicURL')
               ),
             ]}
           />
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          <Comments />
+          <div dangerouslySetInnerHTML={{ __html: page.content }} />
+          <LikeButton />
+          {page.comment_state === 'open' && <Comments />}
           <GetInTouch />
         </div>
       </div>
@@ -66,6 +68,7 @@ export const pageQuery = graphql`
       id
       content
       title
+      comment_status
       date(formatString: "MMMM DD, YYYY")
       featured_media {
         localFile {

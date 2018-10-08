@@ -43,9 +43,14 @@ class Comments extends PureComponent {
   }
   render() {
     const { href } = this.state
-    const { numPosts = 5 } = this.props
     return (
-      <div className="fb-comments" data-href={href} data-numposts={numPosts} />
+      <div
+        class="fb-like"
+        data-href={href}
+        data-layout="standard"
+        data-action="like"
+        data-show-faces="true"
+      />
     )
   }
 }
