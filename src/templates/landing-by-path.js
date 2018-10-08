@@ -46,7 +46,7 @@ class BlogPostTemplate extends React.Component {
           />
           <div dangerouslySetInnerHTML={{ __html: page.content }} />
           <LikeButton />
-          {page.comment_state === 'open' && <Comments />}
+          {page.comment_status === 'open' && <Comments />}
           <GetInTouch />
         </div>
       </div>
