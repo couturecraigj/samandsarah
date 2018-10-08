@@ -45,8 +45,9 @@ class LikeButton extends PureComponent {
     const { href } = this.state
     return (
       <div
-        class="fb-like"
+        className="fb-like"
         data-href={href}
+        data-width="100%"
         data-layout="standard"
         data-action="like"
         data-show-faces="true"
