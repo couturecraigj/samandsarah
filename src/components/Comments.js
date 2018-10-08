@@ -6,7 +6,7 @@ class Comments extends PureComponent {
     this.code = (d, s, id) => {
       window.fbAsyncInit = function() {
         window.FB.init({
-          appId: 'your-app-id',
+          appId: process.env.FB_APP_ID,
           autoLogAppEvents: true,
           xfbml: true,
           version: 'v3.1',
